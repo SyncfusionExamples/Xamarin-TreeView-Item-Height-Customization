@@ -1,0 +1,53 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:GettingStartedBound"
+             x:Class="GettingStartedBound.MainPage"
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.TreeView;assembly=Syncfusion.SfTreeView.XForms">
+    <ContentPage.BindingContext>
+        <local:FileManagerViewModel x:Name="viewModel"></local:FileManagerViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <syncfusion:SfTreeView  x:Name="treeView" 
+                                QueryNodeSize="TreeView_QueryNodeSize"
+                                ChildPropertyName="SubFiles"
+                                ItemsSource="{Binding ImageNodeInfo}"
+                                AutoExpandMode="AllNodesExpanded">
+            <syncfusion:SfTreeView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+
+                            <Grid RowSpacing="0" ColumnSpacing="0" Margin="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="1" />
+                                </Grid.RowDefinitions>
+                                <Grid RowSpacing="0" Padding="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="{Binding ImageIcon}"
+                     Grid.Column="0"
+                     Grid.Row="0"
+                     HeightRequest="40"
+                     WidthRequest="40"
+                     HorizontalOptions="Start"
+                     VerticalOptions="Start" />
+                                    <StackLayout Padding="0,5,0,0" Orientation="Vertical" VerticalOptions="Start" Grid.Row="0" Grid.Column="1">
+                                        <Label Text="{Binding FileName}" FontAttributes="Bold" FontSize="16" TextColor="#474747"/>
+                                        <Label Text="{Binding FileDescription}" Opacity=" 0.54" TextColor="#474747" FontSize="13"/>
+                                    </StackLayout>
+                                </Grid>
+                                <BoxView Grid.Row="1" Margin="5,0,0,0" HeightRequest="1" Opacity="0.75" BackgroundColor="#CECECE" />
+                            </Grid>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </syncfusion:SfTreeView.ItemTemplate>
+        </syncfusion:SfTreeView>
+    </ContentPage.Content>
+</ContentPage>
